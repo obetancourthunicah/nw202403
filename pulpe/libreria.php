@@ -17,3 +17,34 @@ function findProductoByCodigo($codigo)
     }
     return $producto;
 }
+
+function construirOrden($nombre, $cantidad, $producto)
+{
+    $orden = [
+        "uuid" => time(),
+        "nombre" => $nombre,
+        "producto" => $producto,
+        "cantidad" => $cantidad,
+        "total" => round($cantidad * $producto["precio"] * 1.15, 2)
+    ];
+    return $orden;
+}
+
+function agregarAListaDeOrdenes($orden)
+{
+    $ordenes = [];
+    if (isset($_SESSION["ordenes"])) {
+        $ordenes = $_SESSION["ordenes"];
+    }
+    $ordenes[] = $orden;
+    $_SESSION["ordenes"] = $ordenes;
+}
+
+function obtenerOrdenes()
+{
+    $ordenes = [];
+    if (isset($_SESSION["ordenes"])) {
+        $ordenes = $_SESSION["ordenes"];
+    }
+    return $ordenes;
+}
