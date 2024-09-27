@@ -2,7 +2,7 @@
 
 namespace Uch\Oop\Hotel;
 
-class Habitacion
+abstract class Habitacion
 {
     private string $numero;
     private $tipo;
