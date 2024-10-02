@@ -2,6 +2,8 @@
 require_once 'vendor/autoload.php';
 
 use Uch\Oop\Hotel\Cliente;
+use Uch\Oop\Hotel\Extras\ExtraConTour;
+use Uch\Oop\Hotel\Extras\ExtraTodoIncluido;
 use Uch\Oop\Hotel\HabitacionDoble;
 use Uch\Oop\Hotel\HabitacionSimple;
 use Uch\Oop\Hotel\Reserva;
@@ -12,7 +14,7 @@ $habitacionesDisponibles = [];
 $habitacion1 = new HabitacionDoble(
     "1.1",
     "E1",
-    3200.99
+    3000
 );
 
 
@@ -47,7 +49,17 @@ $cliente->setIdentidad('0000-1928-12938');
 $reserva->setCliente($cliente);
 
 $reservaHabitacion = new ReservaHabitacion();
+
+
 $reservaHabitacion->setHabitacion($habitacion1);
+
+
+$todoIncluido = new ExtraTodoIncluido();
+$conTour = new ExtraConTour();
+
+$reservaHabitacion->addExtra($conTour);
+$reservaHabitacion->addExtra($todoIncluido);
+
 $reserva->addHabitacion($reservaHabitacion);
 
 echo "Total de la reserva: " . $reserva->getTotal();

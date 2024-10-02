@@ -53,7 +53,7 @@ Reserva
 Cliente puede seleccionar una habitacion
 Si va todo Inlcuido
 Si tiene Tour
-Si Tiene 
+Si Tiene Masajes
 Con Transporte
 
 ------------------

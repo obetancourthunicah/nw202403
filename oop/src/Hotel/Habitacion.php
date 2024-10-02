@@ -28,6 +28,15 @@ abstract class Habitacion
         $this->edificio = $edificio;
     }
 
+    public function getNumero()
+    {
+        return $this->numero;
+    }
+    public function getEdificio()
+    {
+        return $this->edificio;
+    }
+
     public function toDictionary()
     {
         return [

@@ -31,10 +31,10 @@ class ReservaHabitacion
         if ($dias < 1) {
             throw new Error("Valor incorrecto en Días.");
         }
-        $precioHabitacion = $this->habitacion->getPrecio() * $dias;
+        $precioHabitacion = $this->habitacion->getPrecio();
         foreach ($this->extras as $extra) {
             $precioHabitacion = $extra->aplicarAPrecio($precioHabitacion);
         }
-        return $precioHabitacion;
+        return $precioHabitacion * $dias;
     }
 }
