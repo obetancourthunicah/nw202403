@@ -1,4 +1,6 @@
 <?php
+require_once 'vendor/autoload.php';
+session_start();
 
 use Uch\Oop\Hotel\Cliente;
 use Uch\Oop\Hotel\Extras\ExtraConTour;
@@ -6,8 +8,8 @@ use Uch\Oop\Hotel\Extras\ExtraTodoIncluido;
 use Uch\Oop\Hotel\FabricaHotel;
 use Uch\Oop\Hotel\Reserva;
 use Uch\Oop\Hotel\ReservaHabitacion;
+use Uch\Oop\Hotel\ColleccionReserva;
 
-require_once 'vendor/autoload.php';
 
 
 $txtNombre = '';
@@ -59,8 +61,13 @@ if (isset($_POST["btnEnviar"])) {
 
     $reserva->addHabitacion($reservaHabitacion);
 
-    echo $reserva->getTotal();
+    ColleccionReserva::agregarReserva($reserva);
+    header("location:lista.php");
     die();
+}
+
+if (isset($_POST["btnReset"])) {
+    ColleccionReserva::clearReservas();
 }
 
 
@@ -108,7 +115,10 @@ if (isset($_POST["btnEnviar"])) {
             <input type="checkbox" name="todoIncluido" value="1" id="todoIncluido" /> <label for="todoIncluido"> Todo Incluido</label><br />
             <input type="checkbox" name="conTour" value="1" id="conTour" /> <label for="conTour">Con Tour</label><br />
         </fieldset>
-        <button type="submit" name="btnEnviar" value="Enviar">Enviar</button>
+        <button type="submit" name="btnEnviar" value="Enviar">Enviar</button>&nbsp;
+    </form>
+    <form action="test.php" method="post">
+        <button type="submit" name="btnReset" value="Vaciar">Vaciar</button>
     </form>
 </body>
 

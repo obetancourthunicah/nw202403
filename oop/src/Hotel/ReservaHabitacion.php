@@ -37,4 +37,20 @@ class ReservaHabitacion
         }
         return $precioHabitacion * $dias;
     }
+
+    public function toDictionary()
+    {
+        $tmpExtras = [];
+        foreach ($this->extras as $extra) {
+            $tmpExtras[] = [
+                "precio" => $extra->getPrecio(),
+                "metodo" => $extra->getMetodo(),
+                "tipo" => get_class($extra),
+            ];
+        }
+        return [
+            "habitacion" => $this->habitacion->toDictionary(),
+            "extras" => $tmpExtras,
+        ];
+    }
 }

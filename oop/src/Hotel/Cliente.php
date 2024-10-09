@@ -42,6 +42,15 @@ class Cliente
     {
         $this->identidad = $value;
     }
+    public function toDictionary()
+    {
+        return [
+            "nombre" => $this->nombre,
+            "correo" => $this->correo,
+            "telefono" => $this->telefono,
+            "identidad" => $this->identidad
+        ];
+    }
 
     public function __construct()
     {

@@ -46,6 +46,24 @@ class Reserva
         }
         return $totalReserva;
     }
+
+    public function toJSON()
+    {
+        $tmpHabitaciones = [];
+        foreach ($this->habitaciones as $habitacion) {
+            $tmpHabitaciones[] = $habitacion->toDictionary();
+        }
+        $tmpDictionary = [
+            "cliente" => $this->cliente->toDictionary(),
+            "fechaInicio" => $this->fechaInicio,
+            "fechaFinal" => $this->fechaFinal,
+            "habitaciones" => $tmpHabitaciones,
+            "total" => $this->getTotal()
+        ];
+
+        return json_encode($tmpDictionary);
+    }
+    public function fromJSON(string $jsonString) {}
 }
 
 /*
